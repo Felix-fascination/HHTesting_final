@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e80adb9-e97c-418e-b3aa-21360199b851" name="Changes" comment="Second task upgraded">
-      <change afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/second_task/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/second_task/testing/MainForTesting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hhTesting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hhTesting.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/first_task/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first_task/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/second_task/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/second_task/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,13 +38,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "C:/Drive d/lessons/HHTesting"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.second_task.Main">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="first_task.Main" />
       <module name="hhTesting" />
@@ -52,12 +62,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainForTesting (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="second_task.testing.MainForTesting" />
+      <module name="hhTesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="second_task.testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainForTesting (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="second_task.testing.MainForTesting" />
+      <module name="hhTesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="second_task.testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainForTesting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="second_task.testing.MainForTesting" />
+      <module name="hhTesting" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="second_task.testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="second_task.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="second_task.Main" />
       <module name="hhTesting" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="second_task.*" />
+          <option name="PATTERN" value="second_task.testing.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -67,8 +116,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.second_task.Main" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.second_task.Main" />
+        <item itemvalue="Application.MainForTesting" />
+        <item itemvalue="Application.MainForTesting (3)" />
+        <item itemvalue="Application.MainForTesting (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -102,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666258822493</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Second task upgraded">
+      <created>1666259183794</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666259183794</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,23 +185,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/first_task/Main.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/first_task/Main.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/first_task/Main.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/second_task/Main.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="47" />
+          <line>41</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

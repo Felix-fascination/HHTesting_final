@@ -1,5 +1,7 @@
 package first_task;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,8 +11,8 @@ public class Main {
 
     static int fullSum;
 
-    public static void main (String[] args) throws InterruptedException {
-        Scanner sc = new Scanner(System.in);
+    public static void main (String[] args) throws InterruptedException, FileNotFoundException {
+        Scanner sc = new Scanner(new FileReader("input.txt"));
         String[] nums = sc.nextLine().split(" ");
 
         int count = 0;
@@ -29,7 +31,7 @@ public class Main {
             }
         }
         countMax = count;
-        left = count;
+        left = count - 1;
         int right = 0;
         while(true){
 
@@ -40,29 +42,13 @@ public class Main {
                 if (right > rightRowNum) break;
             }
             countMax = Math.max(count, countMax);
-            if (right > rightRowNum) {
+            if (right > rightRowNum || left == -1) {
                 System.out.print(countMax);
                 return;
             }
-
-            if (left == -1) {
-                System.out.print(countMax);
-                return;
-            }
-            System.out.println(left);
             sumBuff =  sumBuff - leftRow.get(left);
             left--;
-
         }
-
-/*
-        if ( sumBuff <= (fullSum - rightRow.get(i) ) ){
-            sumBuff += rightRow.get(i);
-            count++;
-        }
-        else {
-            sumBuff -= leftRow.get(j);
-        }*/
     }
 
     private static void getNumbers(Scanner sc, int length){
@@ -84,19 +70,5 @@ public class Main {
          return sumBuff <= fullSum - number;
     }
 
-    private static int isItBetter (int sumBuff, int sum, int left, int right){
-        //Нужно пройти это достаточное количество раз, чтобы полностью пройти на правую стопку
-        // Можем пойти не так:
-        // 1) Левая стопка закончится, а я до сих пор в правую буду идти (хотя должно быть все в порядке, но стоит сделать проверку
-        // 
-        if (sumBuff <= sum - rightRow.get(right) ){
-            //Добавляем элемент и спрашиваем снова
-        }
-        else {
-            // Убираем последний элемент из левой стопки, в то же время не забывая про подсчет суммы и count
-        }
-        return 5;
-
-    }
 }
 

@@ -1,5 +1,7 @@
 package second_task;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.LinkedList;
@@ -10,14 +12,15 @@ public class Main {
     static int width;
     static int height;
     static boolean [][] fieldNetwork;
+    static int [][] fields;
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(new FileReader("input.txt"));
-        width = sc.nextInt(); height = sc.nextInt();
-        int [][] fields = new int[height][width];
 
-        LinkedList<Rectangle> rectangles = new LinkedList<>();
+        width = sc.nextInt(); height = sc.nextInt();
+        fields = new int[height][width];
         fieldNetwork = new boolean[height][width];
+        LinkedList<Rectangle> rectangles = new LinkedList<>();
 
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -25,35 +28,45 @@ public class Main {
                 fieldNetwork[i][j] = false;
             }
         }
-        // Через рекурсию  с жадным алгоритмом - пожираю прямоугольник до конца, пока он не закончится
-        // То есть дохожу строку до конца, только в начале ища снизу самую левую точку, а дальше на этой строке справа
-        // Как только заканчивается строка, вызываю метод, который делает то же самое с нижней строкой и так, пока
-        // Не заканчивается прямоугольник, в то же время заполняя сетку и идя по ней
-        for (int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
-                if (!fieldNetwork[i][j] ) {
-                    if(fields[i][j] == 1) {
-                        rectangles.addFirst(new Rectangle(j, i));
-                        fieldNetwork[i][j] = true;
+         /*Храню матрицу просмотренных полей, в итоге дохожу до первого незнакомого плодородного поля и отправляюсь
+         в метод, суть которого заключается в поиске вокруг этого поля других плодородных, при нахождении
+         отправляю их в очередь. После обрабатываю найденное изначально поле и провожу ту же итерацию со всеми найденными
+         полями
+                */
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                if (!fieldNetwork[y][x] ) {
+                    if(fields[y][x] == 1) {
+                        rectangles.addFirst(new Rectangle(x, y));
+                        fieldNetwork[y][x] = true;
                         rectangleSearch(fields, rectangles.peek());
                     }
-                    else fieldNetwork[i][j] = true;
+                    else fieldNetwork[y][x] = true;
                 }
             }
         }
 
-        int bestFields = 0;
+        int bestFieldsSize = 0;
         float bestFertileRate = -1;
         for(Rectangle rectangle: rectangles){
-            if (rectangle.getFertileRate() > bestFertileRate) {
-                bestFertileRate = rectangle.getFertileRate();
-                bestFields = rectangle.getSize() > 1 ? rectangle.getSize() : bestFields;
+            rectangle.setFertileAmount(fields);
+            if (rectangle.getFertileAmount() > 1) {
+                if (rectangle.getFertileRate() > bestFertileRate){
+                    bestFertileRate = rectangle.getFertileRate();
+                    bestFieldsSize = rectangle.getSize();
+                }
+
+                else if (rectangle.getFertileRate() == bestFertileRate && rectangle.getSize() > bestFieldsSize) {
+                    bestFertileRate = rectangle.getFertileRate();
+                    bestFieldsSize = rectangle.getSize();
+                }
             }
         }
-        System.out.println(bestFields);
+        System.out.println(bestFieldsSize);
     }
 
-    private static void rectangleSearch(int [][] fields, Rectangle rectangle){
+    // Метод, обрабатывающий и ищущий полный прямоугольник
+    private static void rectangleSearch(int [][] fields, @NotNull Rectangle rectangle){
         while (!rectangle.isEmpty()){
             Coordinate coor =  rectangle.getCoordinate();
             int x = coor.getX(); int y = coor.getY();
@@ -61,7 +74,7 @@ public class Main {
             rectangle.expandRectangle(x, y);
         }
     }
-    // Не забыть в самом верхней строке пропускать через раз, чтобы ускорить алгоритм
+    // Метод, ищущий новые плодородные поля вокрук
     private static void isAround(int [][] fields, Rectangle rectangle, int x, int y){
         for (int yAround = y - 1; yAround < y + 2; yAround++){
             for( int xAround = x - 1; xAround < x + 2; xAround++){
@@ -79,6 +92,8 @@ public class Main {
     }
 }
 
+//Класс, хранящий двумерное представление поля
+//Был создан для возвращение из методов двумерных значений
 class Coordinate {
     private final int x;
     private final int y;
@@ -96,33 +111,54 @@ class Coordinate {
         return y;
     }
 }
+//Класс прямоугольников, хранящий всю логику, связанную с ними, внутри
 class Rectangle {
-    private int[] upperLeft;
-    private int[] downRight;
+    private int up;
+    private int left;
+    private int down;
+    private int right;
 
-    private int fertileAmount = 1;
+    private int fertileAmount = 0;
     private LinkedList<Coordinate> coordinates = new LinkedList<>();
 
     Rectangle(int x, int y){
         this.coordinates.addFirst(new Coordinate(x, y));
-        this.upperLeft = new int[]{x, y};
-        this.downRight = new int[]{x, y};
+        this.left = x;
+        this.up = y;
+        this.right = x;
+        this.down = y;
     }
 
     @Override
     public String toString() {
-        return "Rectangle:" + upperLeft[0] + ":" + upperLeft[1] + " " + downRight[0] + ":" +downRight[1]
-                + "\n Size: " + getSize() + "; Fertile: " + getFertileRate();
+        return "\tRectangle:" + left + ":" + up
+                + " " + down + ":" + right
+                + "\tSize: " + getSize() + "; Fertile: " + getFertileRate()
+                + ";\t fertile: "+ fertileAmount +"\n";
     }
     public void expandRectangle(int x, int y){
-        if (x < upperLeft[0]) upperLeft[0] = x;
-        else if (x > downRight[0]) downRight[0] = x;
+        if (x < this.left) this.left = x;
+        else if (x > this.right) this.right = x;
 
-        if (y > downRight[1]) downRight[1] = y;
-        else if (y < upperLeft[1]) upperLeft[1] = y;
+        if (y > this.down) this.down = y;
+        else if (y < this.up) this.up = y;
 
     }
 
+    public void setFertileAmount(int[][] fields){
+        for (int x = left; x <= right; x++){
+            for (int y = up; y <= down; y++){
+                if (fields[y][x] == 1) fertileUp();
+            }
+        }
+    }
+    public int getFertileAmount(){
+        return fertileAmount;
+    }
+
+    private void fertileUp(){
+        this.fertileAmount++;
+    }
     public Coordinate getCoordinate(){
         return coordinates.poll();
     }
@@ -131,15 +167,11 @@ class Rectangle {
     }
     public void newCoordinate(int x, int y){
         this.coordinates.addFirst(new Coordinate(x, y));
-        fertileUp();
     }
 
-    private void fertileUp(){
-        this.fertileAmount++;
-    }
     public int getSize(){
-        int width = Math.abs(upperLeft[0] - downRight[0])+ 1;
-        int height = Math.abs(upperLeft[1] - downRight[1])  + 1;
+        int width = Math.abs(right - left)+ 1;
+        int height = Math.abs(down - up)  + 1;
         return width * height;
     }
     public float getFertileRate(){
@@ -147,3 +179,4 @@ class Rectangle {
     }
 
 }
+
