@@ -11,18 +11,17 @@ public class Main {
 
     static int fullSum;
 
-    public static void main (String[] args) throws InterruptedException, FileNotFoundException {
+    public static void main (String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(new FileReader("input.txt"));
         String[] nums = sc.nextLine().split(" ");
 
         int count = 0;
-        int countMax = count;
         int sumBuff = 0;
         int leftRowNum = Integer.parseInt(nums[0]);
         int rightRowNum = Integer.parseInt(nums[1]);
         fullSum = Integer.parseInt(nums[2]);
 
-        getNumbers(sc, Math.max(leftRowNum, rightRowNum));
+        getNumbers(sc, leftRowNum, rightRowNum);
         int left;
         for (int i = 0; i < leftRowNum; i++){
             if ( isItFull(sumBuff, leftRow.get(i)) ){
@@ -30,7 +29,7 @@ public class Main {
                 count++;
             }
         }
-        countMax = count;
+        int countMax = count;
         left = count - 1;
         int right = 0;
         while(true){
@@ -47,22 +46,17 @@ public class Main {
                 return;
             }
             sumBuff =  sumBuff - leftRow.get(left);
+            count--;
             left--;
         }
     }
 
-    private static void getNumbers(Scanner sc, int length){
+    private static void getNumbers(Scanner sc, int leftLength, int rightLength){
         String[] nums;
-        for(int i = 0; i < length; i++){
+        for(int i = 0; i < Math.max(leftLength, rightLength); i++){
             nums = sc.nextLine().split(" ");
-            try {
-                leftRow.add(Integer.parseInt(nums[0]));
-            }
-            catch (Exception e){}
-            try {
-                rightRow.add(Integer.parseInt(nums[1]));
-            }
-            catch (Exception e){}
+            if (i < leftLength)  leftRow.add(Integer.parseInt(nums[0]));
+            if (i < rightLength) rightRow.add(Integer.parseInt(nums[1]));
         }
     }
 

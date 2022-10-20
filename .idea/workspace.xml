@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e80adb9-e97c-418e-b3aa-21360199b851" name="Changes" comment="Second task upgraded">
-      <change afterPath="$PROJECT_DIR$/src/second_task/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/second_task/testing/MainForTesting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hhTesting.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hhTesting.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
+    <list default="true" id="0e80adb9-e97c-418e-b3aa-21360199b851" name="Changes" comment="Everthing is working">
       <change beforePath="$PROJECT_DIR$/src/first_task/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/first_task/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/second_task/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/second_task/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666259183794</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Everthing is working">
+      <created>1666284372857</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666284372857</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,7 +179,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first task" />
     <MESSAGE value="Second task upgraded" />
-    <option name="LAST_COMMIT_MESSAGE" value="Second task upgraded" />
+    <MESSAGE value="Everthing is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Everthing is working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -187,6 +189,11 @@
           <url>file://$PROJECT_DIR$/src/first_task/Main.java</url>
           <line>41</line>
           <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/first_task/Main.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
